@@ -1,22 +1,22 @@
 "use client"
 
-import * as React from "react"
 import {
-  BookOpen,
-  Bot,
+  BadgeDollarSign,
+  BrainCircuit,
+  Briefcase,
+  CalendarClock,
   Command,
-  Frame,
   LifeBuoy,
-  Map,
-  PieChart,
+  LogOut,
   Send,
   Settings2,
-  SquareTerminal,
+  ShieldCheck,
+  TrendingUp,
+  UserPlus,
+  Users,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
@@ -36,86 +36,263 @@ const data = {
   },
   navMain: [
     {
-      title: "Playground",
+      title: "Talent Acquisition",
       url: "#",
-      icon: SquareTerminal,
-      isActive: true,
+      icon: Briefcase,
       items: [
         {
-          title: "History",
+          title: "Create Job",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Job Page",
           url: "#",
         },
         {
-          title: "Settings",
+          title: "Applications",
+          url: "#",
+        },
+        {
+          title: "AI Shortlisting",
+          url: "#",
+        },
+        {
+          title: "Interview Confirmation",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Candidate Onboarding",
       url: "#",
-      icon: Bot,
+      icon: UserPlus,
       items: [
         {
-          title: "Genesis",
+          title: "Offer Letter",
           url: "#",
         },
         {
-          title: "Explorer",
+          title: "Document Collection",
           url: "#",
         },
         {
-          title: "Quantum",
+          title: "Joining Confirmation",
+          url: "#",
+        },
+        {
+          title: "Employee Profile Creation",
+          url: "#",
+        },
+        {
+          title: "Account Activation",
           url: "#",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Employee Management",
       url: "#",
-      icon: BookOpen,
+      icon: Users,
       items: [
         {
-          title: "Introduction",
+          title: "Employee Directory",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "Employee Profile",
           url: "#",
         },
         {
-          title: "Tutorials",
+          title: "Attendance",
           url: "#",
         },
         {
-          title: "Changelog",
+          title: "Leave Management",
+          url: "#",
+        },
+        {
+          title: "Documents",
           url: "#",
         },
       ],
     },
     {
-      title: "Settings",
+      title: "Attendance & Leave",
+      url: "#",
+      icon: CalendarClock,
+      items: [
+        {
+          title: "Attendance Logs",
+          url: "#",
+        },
+        {
+          title: "Leave Requests",
+          url: "#",
+        },
+        {
+          title: "Leave Approvals",
+          url: "#",
+        },
+        {
+          title: "Leave Policies",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Performance & Growth",
+      url: "#",
+      icon: TrendingUp,
+      items: [
+        {
+          title: "KPI Setup",
+          url: "#",
+        },
+        {
+          title: "Performance Review",
+          url: "#",
+        },
+        {
+          title: "AI Performance Insights",
+          url: "#",
+        },
+        {
+          title: "Feedback",
+          url: "#",
+        },
+        {
+          title: "Reports",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Payroll & Benefits",
+      url: "#",
+      icon: BadgeDollarSign,
+      items: [
+        {
+          title: "Salary Structure",
+          url: "#",
+        },
+        {
+          title: "Payroll Processing",
+          url: "#",
+        },
+        {
+          title: "Payslips",
+          url: "#",
+        },
+        {
+          title: "Bonuses & Incentives",
+          url: "#",
+        },
+        {
+          title: "Benefits",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Compliance & Policies",
+      url: "#",
+      icon: ShieldCheck,
+      items: [
+        {
+          title: "HR Policies",
+          url: "#",
+        },
+        {
+          title: "Audit Logs",
+          url: "#",
+        },
+        {
+          title: "Approvals",
+          url: "#",
+        },
+        {
+          title: "Incidents & Disputes",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "AI HR (Brain)",
+      url: "#",
+      icon: BrainCircuit,
+      items: [
+        {
+          title: "AI HR Assistant",
+          url: "#",
+        },
+        {
+          title: "Decision History",
+          url: "#",
+        },
+        {
+          title: "Rules & Automation",
+          url: "#",
+        },
+        {
+          title: "Model Training",
+          url: "#",
+        },
+        {
+          title: "Escalations",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Offboarding",
+      url: "#",
+      icon: LogOut,
+      items: [
+        {
+          title: "Resignation",
+          url: "#",
+        },
+        {
+          title: "Notice Period",
+          url: "#",
+        },
+        {
+          title: "Clearance",
+          url: "#",
+        },
+        {
+          title: "Exit Interview",
+          url: "#",
+        },
+        {
+          title: "Employee Deactivation",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Organization Settings",
       url: "#",
       icon: Settings2,
       items: [
         {
-          title: "General",
+          title: "Company Profile",
           url: "#",
         },
         {
-          title: "Team",
+          title: "Roles & Permissions",
           url: "#",
         },
         {
-          title: "Billing",
+          title: "Email Templates",
           url: "#",
         },
         {
-          title: "Limits",
+          title: "Integrations",
+          url: "#",
+        },
+        {
+          title: "Notifications",
           url: "#",
         },
       ],
@@ -133,23 +310,7 @@ const data = {
       icon: Send,
     },
   ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
+  projects: [],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -174,8 +335,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
