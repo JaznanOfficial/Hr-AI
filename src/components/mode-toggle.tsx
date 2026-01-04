@@ -1,6 +1,7 @@
 "use client"
 
-import { Cloud, Moon, Sun } from "lucide-react"
+import * as React from "react"
+import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
@@ -8,9 +9,23 @@ import { cn } from "@/lib/utils"
 
 export function ModeToggle() {
   const { setTheme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const toggleTheme = () => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark")
+  }
+
+  // Prevent hydration mismatch by returning null until mounted
+  if (!mounted) {
+    return (
+       <Button variant="outline" size="icon" className="cursor-pointer rounded-full border-2 bg-background/50 backdrop-blur-sm border-yellow-500/20">
+          <span className="sr-only">Loading theme</span>
+       </Button>
+    )
   }
 
   return (
@@ -27,14 +42,6 @@ export function ModeToggle() {
       )}
       onClick={toggleTheme}
     >
-      {/* Clouds (Day Mode) */}
-      <Cloud 
-        className={cn(
-          "absolute -bottom-1 -left-1 w-6 h-6 text-white fill-white opacity-80 transition-all duration-500 blur-[1px]",
-          resolvedTheme === "dark" ? "translate-y-4 opacity-0" : "translate-y-0"
-        )} 
-      />
-      
       {/* Stars (Night Mode) */}
       <span className={cn(
         "absolute top-1.5 left-2.5 w-0.5 h-0.5 rounded-full bg-white transition-all duration-500",
