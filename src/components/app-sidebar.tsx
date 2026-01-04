@@ -16,6 +16,7 @@ import {
   UserPlus,
   Users,
 } from "lucide-react"
+import Link from "next/link"
 
 import { useSession } from "@/lib/auth-client"
 
@@ -42,23 +43,23 @@ const data = {
       items: [
         {
           title: "Create Job",
-          url: "#",
+          url: "/dashboard/talent-acquisition/create-job",
         },
         {
           title: "Job Page",
-          url: "#",
+          url: "/dashboard/talent-acquisition/job-page",
         },
         {
           title: "Applications",
-          url: "#",
+          url: "/dashboard/talent-acquisition/applications",
         },
         {
           title: "AI Shortlisting",
-          url: "#",
+          url: "/dashboard/talent-acquisition/ai-shortlisting",
         },
         {
           title: "Interview Confirmation",
-          url: "#",
+          url: "/dashboard/talent-acquisition/interview-confirmation",
         },
       ],
     },
@@ -69,23 +70,23 @@ const data = {
       items: [
         {
           title: "Offer Letter",
-          url: "#",
+          url: "/dashboard/candidate-onboarding/offer-letter",
         },
         {
           title: "Document Collection",
-          url: "#",
+          url: "/dashboard/candidate-onboarding/document-collection",
         },
         {
           title: "Joining Confirmation",
-          url: "#",
+          url: "/dashboard/candidate-onboarding/joining-confirmation",
         },
         {
           title: "Employee Profile Creation",
-          url: "#",
+          url: "/dashboard/candidate-onboarding/employee-profile-creation",
         },
         {
           title: "Account Activation",
-          url: "#",
+          url: "/dashboard/candidate-onboarding/account-activation",
         },
       ],
     },
@@ -96,23 +97,23 @@ const data = {
       items: [
         {
           title: "Employee Directory",
-          url: "#",
+          url: "/dashboard/employee-management/employee-directory",
         },
         {
           title: "Employee Profile",
-          url: "#",
+          url: "/dashboard/employee-management/employee-profile",
         },
         {
           title: "Attendance",
-          url: "#",
+          url: "/dashboard/employee-management/attendance",
         },
         {
           title: "Leave Management",
-          url: "#",
+          url: "/dashboard/employee-management/leave-management",
         },
         {
           title: "Documents",
-          url: "#",
+          url: "/dashboard/employee-management/documents",
         },
       ],
     },
@@ -123,19 +124,19 @@ const data = {
       items: [
         {
           title: "Attendance Logs",
-          url: "#",
+          url: "/dashboard/attendance-leave/attendance-logs",
         },
         {
           title: "Leave Requests",
-          url: "#",
+          url: "/dashboard/attendance-leave/leave-requests",
         },
         {
           title: "Leave Approvals",
-          url: "#",
+          url: "/dashboard/attendance-leave/leave-approvals",
         },
         {
           title: "Leave Policies",
-          url: "#",
+          url: "/dashboard/attendance-leave/leave-policies",
         },
       ],
     },
@@ -146,23 +147,23 @@ const data = {
       items: [
         {
           title: "KPI Setup",
-          url: "#",
+          url: "/dashboard/performance-growth/kpi-setup",
         },
         {
           title: "Performance Review",
-          url: "#",
+          url: "/dashboard/performance-growth/performance-review",
         },
         {
           title: "AI Performance Insights",
-          url: "#",
+          url: "/dashboard/performance-growth/ai-performance-insights",
         },
         {
           title: "Feedback",
-          url: "#",
+          url: "/dashboard/performance-growth/feedback",
         },
         {
           title: "Reports",
-          url: "#",
+          url: "/dashboard/performance-growth/reports",
         },
       ],
     },
@@ -173,23 +174,23 @@ const data = {
       items: [
         {
           title: "Salary Structure",
-          url: "#",
+          url: "/dashboard/payroll-benefits/salary-structure",
         },
         {
           title: "Payroll Processing",
-          url: "#",
+          url: "/dashboard/payroll-benefits/payroll-processing",
         },
         {
           title: "Payslips",
-          url: "#",
+          url: "/dashboard/payroll-benefits/payslips",
         },
         {
           title: "Bonuses & Incentives",
-          url: "#",
+          url: "/dashboard/payroll-benefits/bonuses-incentives",
         },
         {
           title: "Benefits",
-          url: "#",
+          url: "/dashboard/payroll-benefits/benefits",
         },
       ],
     },
@@ -200,19 +201,19 @@ const data = {
       items: [
         {
           title: "HR Policies",
-          url: "#",
+          url: "/dashboard/compliance-policies/hr-policies",
         },
         {
           title: "Audit Logs",
-          url: "#",
+          url: "/dashboard/compliance-policies/audit-logs",
         },
         {
           title: "Approvals",
-          url: "#",
+          url: "/dashboard/compliance-policies/approvals",
         },
         {
           title: "Incidents & Disputes",
-          url: "#",
+          url: "/dashboard/compliance-policies/incidents-disputes",
         },
       ],
     },
@@ -223,23 +224,23 @@ const data = {
       items: [
         {
           title: "AI HR Assistant",
-          url: "#",
+          url: "/dashboard/ai-hr-brain/ai-hr-assistant",
         },
         {
           title: "Decision History",
-          url: "#",
+          url: "/dashboard/ai-hr-brain/decision-history",
         },
         {
           title: "Rules & Automation",
-          url: "#",
+          url: "/dashboard/ai-hr-brain/rules-automation",
         },
         {
           title: "Model Training",
-          url: "#",
+          url: "/dashboard/ai-hr-brain/model-training",
         },
         {
           title: "Escalations",
-          url: "#",
+          url: "/dashboard/ai-hr-brain/escalations",
         },
       ],
     },
@@ -250,23 +251,23 @@ const data = {
       items: [
         {
           title: "Resignation",
-          url: "#",
+          url: "/dashboard/offboarding/resignation",
         },
         {
           title: "Notice Period",
-          url: "#",
+          url: "/dashboard/offboarding/notice-period",
         },
         {
           title: "Clearance",
-          url: "#",
+          url: "/dashboard/offboarding/clearance",
         },
         {
           title: "Exit Interview",
-          url: "#",
+          url: "/dashboard/offboarding/exit-interview",
         },
         {
           title: "Employee Deactivation",
-          url: "#",
+          url: "/dashboard/offboarding/employee-deactivation",
         },
       ],
     },
@@ -277,23 +278,23 @@ const data = {
       items: [
         {
           title: "Company Profile",
-          url: "#",
+          url: "/dashboard/organization-settings/company-profile",
         },
         {
           title: "Roles & Permissions",
-          url: "#",
+          url: "/dashboard/organization-settings/roles-permissions",
         },
         {
           title: "Email Templates",
-          url: "#",
+          url: "/dashboard/organization-settings/email-templates",
         },
         {
           title: "Integrations",
-          url: "#",
+          url: "/dashboard/organization-settings/integrations",
         },
         {
           title: "Notifications",
-          url: "#",
+          url: "/dashboard/organization-settings/notifications",
         },
       ],
     },
@@ -306,17 +307,17 @@ const data = {
       items: [
           {
               title: "Help Center",
-              url: "#",
+              url: "/dashboard/support/help-center",
           },
           {
               title: "Contact Us",
-              url: "#",
+              url: "/dashboard/support/contact-us",
           }
       ]
     },
     {
       title: "Feedback",
-      url: "#",
+      url: "/dashboard/feedback",
       icon: Send,
     },
   ],
@@ -337,7 +338,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <Link href="#">
                 <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                   <Command className="size-4" />
                 </div>
@@ -345,7 +346,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <span className="truncate font-medium">Acme Inc</span>
                   <span className="truncate text-xs">Enterprise</span>
                 </div>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
