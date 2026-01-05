@@ -19,11 +19,11 @@ import {
   LayoutDashboard,
 } from "lucide-react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 import { useSession } from "@/lib/auth-client"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
 import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
 import {
@@ -305,7 +305,7 @@ const data = {
   navSecondary: [
     {
       title: "Support",
-      url: "#",
+      url: "/dashboard/support",
       icon: LifeBuoy,
       items: [
           {
@@ -328,6 +328,7 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+    const pathname = usePathname()
     const { data: session, isPending } = useSession();
     const user = {
         name: session?.user?.name || "User",
@@ -358,7 +359,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild tooltip="Master Agent">
+              <SidebarMenuButton asChild tooltip="Master Agent" isActive={pathname === '/dashboard/master-agent'}>
                 <Link href="/dashboard/master-agent">
                   <Bot />
                   <span>Master Agent</span>
@@ -366,7 +367,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild tooltip="Dashboard">
+              <SidebarMenuButton asChild tooltip="Dashboard" isActive={pathname === '/dashboard'}>
                 <Link href="/dashboard">
                   <LayoutDashboard />
                   <span>Dashboard</span>
