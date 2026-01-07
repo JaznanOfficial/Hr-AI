@@ -143,7 +143,7 @@ export function ChatInterface() {
       </div>
 
       {/* Messages Area - Using flex-1 and min-h-0 is crucial for scrolling within flex column */}
-      <div className="flex-1 min-h-0 relative"> 
+      <div className="flex-1 min-h-0 relative overflow-hidden"> 
          <ScrollArea className="h-full p-4">
             <div className="space-y-6 pb-4">
             {messages.map((message) => (
