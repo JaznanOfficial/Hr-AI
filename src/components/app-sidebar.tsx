@@ -3,7 +3,6 @@
 import * as React from "react"
 import {
   Briefcase,
-  ClipboardList,
   Command,
   LifeBuoy,
   Send,
@@ -55,6 +54,18 @@ const data = {
       title: "Project Management (PM)",
       url: "/dashboard/operations/project-management",
       icon: Briefcase,
+      items: [
+        { title: "Overview", url: "/dashboard/operations/project-management/overview" },
+        { title: "Projects", url: "/dashboard/operations/project-management/projects" },
+        { title: "Planning", url: "/dashboard/operations/project-management/planning" },
+        { title: "Tasks", url: "/dashboard/operations/project-management/tasks" },
+        { title: "Assignments", url: "/dashboard/operations/project-management/assignments" },
+        { title: "Timeline", url: "/dashboard/operations/project-management/timeline" },
+        { title: "Blockers & risks", url: "/dashboard/operations/project-management/blockers-risks" },
+        { title: "Updates", url: "/dashboard/operations/project-management/updates" },
+        { title: "Decision", url: "/dashboard/operations/project-management/decision" },
+        { title: "Settings & guardrails", url: "/dashboard/operations/project-management/settings-guardrails" },
+      ],
     },
   ],
   navSecondary: [
@@ -124,14 +135,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <Link href="/dashboard">
                   <LayoutDashboard />
                   <span>Dashboard</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild tooltip="Project" isActive={pathname === '/dashboard/project'}>
-                <Link href="/dashboard/project">
-                  <ClipboardList />
-                  <span>Projects</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
