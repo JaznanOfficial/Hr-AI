@@ -3,13 +3,23 @@
 import { useMemo, useState } from "react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
 import {
   Dialog,
   DialogClose,
@@ -18,7 +28,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 import {
   DropdownMenu,
@@ -72,8 +81,11 @@ const personId = (name: string) =>
 export default function ProjectPage() {
   const [projects, setProjects] = useState(initialProjects)
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [dialogMode, setDialogMode] = useState<"create" | "edit">("create")
+  const [editingIndex, setEditingIndex] = useState<number | null>(null)
   const [projectName, setProjectName] = useState("")
   const [selectedPeople, setSelectedPeople] = useState<string[]>([])
+  const [deleteTarget, setDeleteTarget] = useState<number | null>(null)
 
   const isSubmitDisabled =
     !projectName.trim() || selectedPeople.length === 0
@@ -94,17 +106,60 @@ export default function ProjectPage() {
     )
   }
 
-  function handleCreateProject(event: React.FormEvent<HTMLFormElement>) {
+  function handleDeleteProject() {
+    if (deleteTarget === null) return
+    setProjects((prev) => prev.filter((_, index) => index !== deleteTarget))
+    setDeleteTarget(null)
+  }
+
+  function resetFormState() {
+    setProjectName("")
+    setSelectedPeople([])
+    setEditingIndex(null)
+    setDialogMode("create")
+  }
+
+  function handleDialogOpenChange(open: boolean) {
+    setDialogOpen(open)
+    if (!open) {
+      resetFormState()
+    }
+  }
+
+  function handleStartCreate() {
+    resetFormState()
+    setDialogMode("create")
+    setDialogOpen(true)
+  }
+
+  function handleStartEdit(index: number) {
+    const project = projects[index]
+    setDialogMode("edit")
+    setEditingIndex(index)
+    setProjectName(project.name)
+    setSelectedPeople(project.team.map((member) => member.name))
+    setDialogOpen(true)
+  }
+
+  function handleSubmitProject(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (isSubmitDisabled) return
 
-    setProjects((prev) => [
-      { name: projectName.trim(), team: selectedTeam },
-      ...prev,
-    ])
+    if (dialogMode === "create") {
+      setProjects((prev) => [
+        { name: projectName.trim(), team: selectedTeam },
+        ...prev,
+      ])
+    } else if (dialogMode === "edit" && editingIndex !== null) {
+      setProjects((prev) =>
+        prev.map((project, index) =>
+          index === editingIndex
+            ? { ...project, name: projectName.trim(), team: selectedTeam }
+            : project
+        )
+      )
+    }
 
-    setProjectName("")
-    setSelectedPeople([])
     setDialogOpen(false)
   }
 
@@ -117,21 +172,23 @@ export default function ProjectPage() {
             Monitor delivery health, team load, and upcoming milestones.
           </p>
         </div>
-        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger asChild>
-            <Button className="gap-2">
-              <Plus className="size-4" />
-              Create Project
-            </Button>
-          </DialogTrigger>
+        <Dialog open={dialogOpen} onOpenChange={handleDialogOpenChange}>
+          <Button className="gap-2" onClick={handleStartCreate}>
+            <Plus className="size-4" />
+            Create Project
+          </Button>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>New project</DialogTitle>
+              <DialogTitle>
+                {dialogMode === "edit" ? "Edit project" : "New project"}
+              </DialogTitle>
               <DialogDescription>
-                Name the initiative and assign the humans who will lead it.
+                {dialogMode === "edit"
+                  ? "Update the project details and reassign team members."
+                  : "Name the initiative and assign the humans who will lead it."}
               </DialogDescription>
             </DialogHeader>
-            <form className="space-y-6" onSubmit={handleCreateProject}>
+            <form className="space-y-6" onSubmit={handleSubmitProject}>
               <div className="space-y-2">
                 <label className="text-sm font-medium" htmlFor="project-name">
                   Project name
@@ -192,7 +249,7 @@ export default function ProjectPage() {
                   </Button>
                 </DialogClose>
                 <Button type="submit" disabled={isSubmitDisabled}>
-                  Create
+                  {dialogMode === "edit" ? "Save changes" : "Create"}
                 </Button>
               </DialogFooter>
             </form>
@@ -241,8 +298,21 @@ export default function ProjectPage() {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
-                        <DropdownMenuItem>Edit project</DropdownMenuItem>
-                        <DropdownMenuItem className="text-destructive">
+                        <DropdownMenuItem
+                          onSelect={(event) => {
+                            event.preventDefault()
+                            handleStartEdit(projects.indexOf(project))
+                          }}
+                        >
+                          Edit project
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          className="text-destructive"
+                          onSelect={(event) => {
+                            event.preventDefault()
+                            setDeleteTarget(projects.indexOf(project))
+                          }}
+                        >
                           Delete project
                         </DropdownMenuItem>
                       </DropdownMenuContent>
@@ -266,6 +336,29 @@ export default function ProjectPage() {
           </PaginationContent>
         </Pagination>
       </div>
+      <AlertDialog open={deleteTarget !== null} onOpenChange={(open) => !open && setDeleteTarget(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete project</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action permanently deletes the project and its assignments. You
+              can’t undo this.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleDeleteProject}
+              className={cn(
+                buttonVariants({ variant: "destructive" }),
+                "hover:bg-destructive/90"
+              )}
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   )
 }
